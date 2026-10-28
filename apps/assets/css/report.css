@@ -1,0 +1,540 @@
+/* --- GENERAL STYLES (untuk tampilan layar) --- */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f7f6;
+}
+
+.container-app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.text-gray-800 {
+  color: #2d3748;
+}
+
+.form-label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #4a5568;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: #fff;
+  border: 1px solid #28a745;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+  border: 1px solid #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  flex-direction: column;
+}
+
+.loading-spinner {
+  font-size: 3rem;
+  color: #007bff;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Report specific styles */
+.report-container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: relative; /* Needed for watermark positioning */
+}
+
+.report-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #eee;
+}
+
+.report-header .company-logo-screen {
+  max-width: 100px;
+  margin-bottom: 1rem;
+}
+
+.report-header h1 {
+  font-size: 2em;
+  color: #0056b3;
+  margin: 0;
+}
+
+.report-header p {
+  margin: 0.5rem 0 0;
+  color: #555;
+  font-size: 1.1em;
+}
+
+.report-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-left: 5px solid #007bff;
+  border-radius: 0.25rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #333;
+  font-size: 0.95em;
+}
+
+.info-item i {
+  color: #007bff;
+  font-size: 1.2em;
+}
+
+.report-tables {
+  display: grid;
+  gap: 2rem;
+}
+
+.report-tables.grid-cols-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+.report-table th,
+.report-table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+  font-size: 0.9em;
+}
+
+.report-table th {
+  background-color: #f2f2f2;
+  font-weight: 600;
+  color: #333;
+}
+
+.report-table .text-center {
+  text-align: center;
+}
+
+.report-table .text-right {
+  text-align: right;
+}
+
+.total-row {
+  background-color: #e9ecef;
+}
+
+.actual-data-section {
+  margin-top: 3rem;
+  border-top: 1px dashed #ccc;
+  padding-top: 2rem;
+}
+
+.signature-section {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 3rem;
+  text-align: center;
+  page-break-inside: avoid; /* Keep signature block together */
+}
+
+.signature-block {
+  flex: 1;
+  padding: 0 1rem;
+}
+
+.signature-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.signature-line {
+  border-bottom: 1px solid #000;
+  width: 80%;
+  margin: 3rem auto 0.5rem auto; /* Space for signature */
+}
+
+.signature-name {
+  font-style: italic;
+  font-weight: bold;
+  color: #555;
+}
+
+.font-handwriting {
+  font-family: "Indie Flower", cursive; /* Example handwriting font */
+  font-size: 1.1em;
+}
+
+/* Watermark for screen */
+.watermark-screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 4em;
+  color: rgba(0, 0, 0, 0.1);
+  z-index: 0;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Print date information (hidden by default on screen) */
+.print-date {
+  margin-top: 2rem;
+  text-align: right;
+  font-size: 0.8em;
+  color: #777;
+  display: none; /* Hidden on screen */
+}
+
+/* Chiller section styles */
+.chiller-sections {
+  margin-bottom: 2rem;
+}
+
+.chiller-section {
+  margin-bottom: 2.5rem;
+  page-break-inside: avoid;
+}
+
+.chiller-title {
+  font-size: 1.2em;
+  color: #0056b3;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #eee;
+}
+
+.chiller-total {
+  margin-top: 1rem;
+}
+
+/* --- PRINT-SPECIFIC STYLES --- */
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-size: 12pt; /* Memperbesar ukuran font dasar untuk cetak */
+  }
+
+  /* Sembunyikan elemen yang tidak diperlukan saat mencetak */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Tampilkan elemen khusus cetak */
+  .print-date {
+    display: block !important;
+  }
+
+  .report-container {
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    position: relative;
+  }
+
+  /* Margin halaman dan ukuran untuk A4 */
+  @page {
+    size: A4;
+    margin: 25mm; /* Menambah padding atas, bawah, kanan, kiri */
+  }
+
+  /* Penyesuaian Header untuk cetak */
+  .report-header {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5rem;
+  }
+
+  .report-header .company-logo-print {
+    display: block;
+    max-width: 80px;
+    margin: 0 auto 0.5rem auto;
+  }
+
+  .report-header h1 {
+    font-size: 1.8em; /* Ukuran judul laporan diperbesar */
+  }
+
+  .report-header p {
+    font-size: 1em; /* Ukuran teks di bawah judul diperbesar */
+  }
+
+  /* Penyesuaian informasi laporan */
+  .report-info {
+    grid-template-columns: 1fr;
+    gap: 0.75rem; /* Mengurangi jarak antar item info */
+    margin-bottom: 1.5rem; /* Jarak bawah info laporan */
+    padding: 0.75rem; /* Mengurangi padding di section info */
+    background-color: #fff;
+    border-left: none;
+  }
+  .info-item {
+    font-size: 0.95em; /* Ukuran font info diperbesar */
+  }
+
+  /* Gaya tabel untuk cetak */
+  .report-table {
+    margin-bottom: 1.5rem;
+  }
+
+  .report-table th,
+  .report-table td {
+    padding: 0.6rem 0.4rem; /* Mengurangi padding X dan Y */
+    font-size: 0.9em; /* Ukuran font tabel diperbesar */
+  }
+
+  /* Pastikan tabel tidak terpotong di tengah halaman */
+  .report-table thead {
+    display: table-header-group;
+  }
+  .report-table tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  /* Tata letak kolom untuk tabel */
+  .report-tables {
+    display: block;
+  }
+  .report-column {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Bagian tanda tangan untuk cetak */
+  .signature-section {
+    margin-top: 2.5rem;
+    justify-content: space-between;
+    padding: 0 10mm;
+  }
+
+  .signature-block {
+    flex: 1;
+    text-align: center;
+    padding: 0 0.5rem;
+  }
+
+  .signature-line {
+    margin: 2rem auto 0.3rem auto;
+    width: 90%;
+  }
+
+  .signature-title {
+    font-size: 0.9em;
+  }
+  .signature-name {
+    font-size: 1em;
+  }
+
+  /* Chiller section print styles */
+  .chiller-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .chiller-title {
+    font-size: 1.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Watermark Cetak */
+  .watermark-print-fixed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 6em;
+    color: rgba(0, 0, 0, 0.05);
+    z-index: -1;
+    pointer-events: none;
+    white-space: nowrap;
+    opacity: 0.5;
+  }
+
+  /* Footer halaman untuk nomor halaman dan datetime */
+  .page-footer {
+    position: fixed;
+    bottom: 10mm; /* Jarak dari bawah kertas */
+    left: 25mm; /* Sesuai dengan margin kiri halaman */
+    right: 25mm; /* Sesuai dengan margin kanan halaman */
+    width: calc(100% - 50mm); /* Lebar sesuai margin */
+    font-size: 0.7em;
+    color: #555;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 5px;
+  }
+}
+
+/* PDF generation specific styles */
+.report-container-print {
+  width: 100%;
+  padding: 15mm; /* Match the PDF margin */
+  box-sizing: border-box;
+  position: relative;
+  background-color: white;
+}
+
+.page-footer {
+  position: fixed;
+  bottom: 10mm;
+  left: 15mm;
+  right: 15mm;
+  width: calc(100% - 30mm);
+  font-size: 9pt;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+  border-top: 0.5pt solid #eee;
+  padding-top: 2mm;
+}
+
+.watermark-print-fixed {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 60pt;
+  color: rgba(0, 0, 0, 0.05);
+  z-index: -1;
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0.5;
+}
+
+.company-logo-print {
+  max-width: 80px;
+  margin-bottom: 5mm;
+}
+
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+    background: white;
+  }
+
+  .report-container-print {
+    padding: 0;
+    margin: 0;
+  }
+
+  .page-footer {
+    display: none; /* Let the PDF handle the footer */
+  }
+}

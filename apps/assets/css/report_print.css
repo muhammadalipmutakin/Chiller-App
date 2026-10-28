@@ -1,0 +1,316 @@
+/* Define print-specific variables (copy from main CSS if needed) */
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #e74c3c;
+  --accent-color: #3498db;
+  --light-accent: #ecf0f1;
+  --text-dark: #2c3e50;
+  --text-medium: #7f8c8d;
+  --bg-light: #f9f9f9;
+  --border-color: #dfe6e9;
+  --success-color: #27ae60;
+}
+
+/* Page counter setup */
+@counter-style page-number-style {
+  system: fixed;
+  symbols: "1" "2" "3" "4" "5" "6" "7" "8" "9" "10" "11" "12" "13" "14" "15"
+    "16" "17" "18" "19" "20" "21" "22" "23" "24" "25" "26" "27" "28" "29" "30"; /* Adjust as needed */
+  suffix: "";
+}
+@page {
+  size: landscape;
+  margin: 1cm; /* Reduced margin from 1.5cm */
+  @bottom-right {
+    content: counter(page, page-number-style) " / "
+      counter(pages, page-number-style);
+    font-family: "Open Sans", sans-serif;
+    font-size: 10pt;
+    color: var(--text-medium);
+  }
+}
+
+html,
+body {
+  height: auto; /* Allow content to dictate height */
+  margin: 0;
+  padding: 0;
+  background: white; /* Ensure white background for print */
+  -webkit-print-color-adjust: exact;
+  color-adjust: exact; /* Standardized property */
+  font-family: "Open Sans", sans-serif;
+  color: var(--text-dark);
+  font-size: 10pt;
+  counter-reset: page; /* Reset page counter for print */
+}
+
+/* Watermark for print */
+.watermark-print-fixed {
+  position: fixed; /* Fixed position for watermark on every page */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-size: 6rem;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.08);
+  pointer-events: none; /* Make it unclickable */
+  user-select: none; /* Prevent text selection */
+  white-space: nowrap;
+  z-index: 100; /* Put it on top of everything for print too */
+  font-family: "Playfair Display", serif;
+}
+
+h1,
+h2,
+h3,
+.font-poppins {
+  font-family: "Poppins", sans-serif;
+  color: var(--text-dark);
+}
+
+.font-elegant {
+  font-family: "Playfair Display", serif;
+}
+
+.font-handwriting {
+  font-family: "Patrick Hand", cursive;
+}
+
+.no-print {
+  display: none !important;
+}
+
+.report-container {
+  position: relative;
+  padding: 0; /* Removed padding */
+  box-shadow: none;
+  border: none;
+  background-color: white;
+  overflow: visible;
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+/* Hide screen-specific watermark */
+.watermark-screen {
+  display: none !important;
+}
+
+.report-header {
+  text-align: center;
+  margin-bottom: 0.2cm; /* Reduced margin-bottom from 0.5cm */
+  padding-bottom: 0.1cm; /* Reduced padding-bottom from 0.3cm */
+  border-bottom: 1px solid var(--primary-color);
+  width: 100%;
+  position: relative;
+  page-break-after: avoid;
+  background-color: white;
+}
+
+.report-header .company-logo-screen {
+  display: none;
+}
+.report-header .company-logo-print {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.report-header h1 {
+  font-size: 1.6rem;
+  margin-bottom: 0.1cm; /* Reduced margin-bottom from 0.2cm */
+}
+
+.report-header p {
+  font-size: 0.9rem;
+}
+
+.report-info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 0.1cm; /* Reduced row-gap from 0.3cm */
+  column-gap: 1cm; /* Reduced column-gap from 2cm */
+  margin-bottom: 0.3cm; /* Reduced margin-bottom from 0.8cm */
+  padding: 0.2cm 0.3cm; /* Reduced padding from 0.5cm 0.8cm */
+  background-color: var(--light-accent);
+  border-left: 2px solid var(--accent-color);
+  page-break-after: avoid;
+  width: 100%;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem; /* Reduced gap from 0.5rem */
+}
+
+.info-item i {
+  font-size: 0.9rem;
+}
+
+.info-text {
+  font-size: 0.9rem;
+}
+
+.info-text strong {
+  font-size: 0.9rem;
+}
+
+.report-tables-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 0; /* Removed margin-top */
+}
+
+.report-tables {
+  display: grid;
+  gap: 1rem; /* Reduced gap from 2rem */
+  flex: 1;
+  min-width: 45%;
+}
+
+.actual-data-section {
+  flex: 1;
+  min-width: 45%;
+}
+
+@media (max-width: 1024px) {
+  .report-tables-wrapper {
+    flex-direction: column;
+    gap: 0.5rem; /* Reduced gap */
+  }
+  .report-tables,
+  .actual-data-section {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+.report-table {
+  width: 97%;
+  border-collapse: collapse;
+  margin-bottom: 0.2cm; /* Reduced margin-bottom from 0.5cm */
+  page-break-inside: auto;
+  box-shadow: none;
+  background-color: white;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.report-table th {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.2rem 0.3rem; /* Reduced padding from 0.4rem 0.6rem */
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1px solid white;
+}
+
+.report-table td {
+  padding: 0.2rem 0.3rem; /* Reduced padding from 0.4rem 0.6rem */
+  font-size: 0.9rem;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.report-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.report-table tr:nth-child(even) {
+  background-color: var(--bg-light);
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.total-table-wrapper {
+  margin-top: 0.2cm; /* Reduced margin-top from 0.6cm */
+  page-break-inside: avoid;
+  break-before: auto;
+  width: 100%;
+}
+
+.total-row {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  border-top: 2px solid var(--primary-color) !important;
+  border-bottom: 2px solid var(--primary-color) !important;
+}
+
+.total-row td {
+  font-weight: 700;
+  font-size: 1rem;
+  border: none !important;
+  padding: 0.3rem 0.4rem; /* Reduced padding from 0.5rem 0.7rem */
+}
+
+.signature-section {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 0.8cm; /* Reduced margin-top from 1.5cm */
+  padding-top: 0.4cm; /* Reduced padding-top from 0.8cm */
+  padding-bottom: 0.2cm; /* Reduced padding-bottom from 0.5cm */
+  border-top: 1px dashed var(--border-color);
+  page-break-before: avoid;
+  page-break-inside: avoid;
+  width: 100%;
+  background-color: white;
+}
+
+.signature-block {
+  text-align: center;
+  flex: 1;
+  max-width: 250px;
+}
+
+.signature-title {
+  font-size: 0.9rem;
+}
+
+.signature-line {
+  height: 1px;
+  background-color: var(--text-dark);
+  margin: 0.8cm 0 0.1cm; /* Reduced margin above line from 1.5cm */
+  position: relative;
+}
+
+.signature-line:after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-bottom: 1px solid var(--text-dark);
+}
+
+.signature-name {
+  font-weight: 600;
+  margin-top: 0.1cm; /* Reduced margin-top from 0.3cm */
+  font-size: 1rem;
+}
+
+.print-date {
+  display: none !important;
+}

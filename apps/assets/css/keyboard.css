@@ -1,0 +1,259 @@
+/* Dark Theme for Custom Virtual Keyboard - REVISI UNTUK SPASI PANJANG & TUTUP NORMAL */
+
+#custom-virtual-keyboard {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #2c2c2c; /* Slightly lighter than pure black */
+  border-top: 1px solid #444; /* Darker border */
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5); /* More pronounced shadow for depth */
+  z-index: 1000000;
+
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  pointer-events: none;
+  padding: 10px; /* Add some padding for better spacing */
+  box-sizing: border-box; /* Include padding in width */
+  overflow-x: hidden; /* Mencegah scroll horizontal jika tombol melebihi lebar */
+}
+
+#custom-virtual-keyboard.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Keyboard Rows */
+.keyboard-row {
+  display: flex;
+  justify-content: space-between; /* Gunakan space-between untuk mendistribusikan tombol */
+  margin-bottom: 8px; /* Jarak antar baris */
+  padding: 0 5px; /* Sedikit padding horizontal di dalam baris untuk mengatasi tepi */
+  box-sizing: border-box;
+  flex-wrap: nowrap; /* Pastikan tombol tetap dalam satu baris */
+}
+
+.keyboard-row:last-child {
+  margin-bottom: 0; /* No bottom margin for the last row */
+}
+
+/* Individual Keyboard Buttons */
+.keyboard-button {
+  flex: 1 1 auto; /* Default: tumbuh & menyusut, basis otomatis */
+  margin: 0 4px; /* Margin horizontal untuk jarak antar tombol */
+  padding: 15px 10px; /* More padding for a comfortable press area */
+  font-size: 1.3em; /* Slightly larger font for readability */
+  font-weight: 500; /* Medium font weight */
+  border: none; /* No individual button border */
+  border-radius: 10px; /* More rounded corners for modern look */
+  background-color: #3a3a3a;
+  color: #e0e0e0; /* Light text color for contrast */
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Softer, deeper shadow */
+  transition: background-color 0.2s ease, transform 0.1s ease,
+    box-shadow 0.2s ease;
+  user-select: none;
+  min-width: 45px; /* Ensure a decent minimum width */
+  height: 60px; /* Consistent height for all buttons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* Pastikan teks di tengah */
+  white-space: normal; /* Izinkan teks untuk melipat (wrap) jika tombol terlalu sempit */
+  word-break: break-word; /* Memecah kata panjang jika perlu */
+}
+
+/* Hapus margin pada tombol pertama dan terakhir di setiap baris untuk tampilan yang lebih rapi */
+.keyboard-row .keyboard-button:first-child {
+  margin-left: 0;
+}
+.keyboard-row .keyboard-button:last-child {
+  margin-right: 0;
+}
+
+.keyboard-button:hover {
+  background-color: #4a4a4a; /* Lighter dark on hover */
+  transform: translateY(-1px); /* Slight lift effect */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.keyboard-button:active {
+  background-color: #2a2a2a; /* Darker on click */
+  transform: translateY(1px); /* Press effect */
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4); /* Inset shadow for pressed look */
+}
+
+/* Special Keys */
+.special-key {
+  background-color: #505050; /* Distinct dark gray for special keys */
+  color: #ffffff;
+}
+
+.special-key:hover {
+  background-color: #606060;
+}
+
+.special-key:active {
+  background-color: #404040;
+}
+
+.special-key.active {
+  /* For Shift/Capslock active state */
+  background-color: #007bff; /* Vibrant blue for active state */
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); /* Glow effect for active state */
+}
+
+/* Specific Special Keys Overrides */
+.space-key {
+  flex-grow: 3; /* Spasi akan 3x lebih lebar dari tombol flex-grow: 1 */
+  background-color: #3a3a3a; /* Match regular keys */
+}
+
+.backspace-key,
+.enter-key {
+  flex-grow: 1.5; /* Keep wider for backspace/enter */
+  background-color: #dc3545; /* Red for destructive/action keys */
+  color: white;
+}
+.backspace-key:hover,
+.enter-key:hover {
+  background-color: #c82333;
+}
+.backspace-key:active,
+.enter-key:active {
+  background-color: #bd2130;
+}
+
+.shift-key,
+.capslock-key {
+  flex-grow: 1.7;
+  background-color: #6c757d; /* Muted gray for shift/capslock */
+  color: white;
+}
+.shift-key:hover,
+.capslock-key:hover {
+  background-color: #5a6268;
+}
+
+.close-keyboard-key {
+  background-color: #dc3545; /* Red for close */
+  color: white;
+  flex-grow: 1.2; /* Sedikit lebih lebar dari tombol standar, tapi tidak penuh */
+  /* Menghapus flex-basis: 100%; dan max-width: 100%; */
+  /* Hapus margin: 0; jika ini adalah baris tersendiri dan Anda ingin margin di sisi */
+}
+/* Hapus aturan khusus untuk .keyboard-row:last-child jika {closeKeyboard} tidak di baris sendiri */
+/* Jika {closeKeyboard} ada di baris dengan tombol lain, aturan .keyboard-row:last-child ini harus dihapus */
+/* atau diubah agar tidak memengaruhi tombol lain di baris yang sama. */
+/* Jika tombol tutup TIDAK di baris terakhir dan berdiri sendiri */
+/* Maka, pastikan di JavaScript tombol tutup ada di baris yang sama dengan .com, @, Space, 123 */
+/* Contoh layout JavaScript yang mungkin:
+   default: [
+     // ...
+     ["{dotcom}", "{at}", "{space}", "{closeKeyboard}", "{numericLayoutToggle}"],
+   ],
+*/
+
+.numeric-layout-toggle,
+.alpha-layout-toggle {
+  background-color: #007bff; /* Blue for layout toggles */
+  color: white;
+  flex-grow: 1; /* Default flex-grow */
+}
+.numeric-layout-toggle:hover,
+.alpha-layout-toggle:hover {
+  background-color: #0069d9;
+}
+.numeric-layout-toggle:active,
+.alpha-layout-toggle:active {
+  background-color: #0062cc;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  #custom-virtual-keyboard {
+    padding: 6px;
+  }
+
+  .keyboard-row {
+    margin-bottom: 6px;
+    padding: 0 4px; /* Sesuaikan padding horizontal */
+  }
+
+  .keyboard-button {
+    padding: 12px 8px;
+    font-size: 1.1em;
+    height: 55px; /* Anda ingin height tetap */
+    border-radius: 8px;
+    min-width: 30px; /* Izinkan tombol menyusut lebih kecil */
+    margin: 0 3px; /* Sesuaikan margin antar tombol */
+  }
+
+  .keyboard-row .keyboard-button:first-child {
+    margin-left: 0;
+  }
+  .keyboard-row .keyboard-button:last-child {
+    margin-right: 0;
+  }
+
+  .space-key {
+    flex-grow: 2.5; /* Sedikit kurangi proporsi spasi */
+  }
+  .backspace-key,
+  .enter-key {
+    flex-grow: 1.2; /* Sedikit kurangi proporsi backspace/enter */
+  }
+  .shift-key,
+  .capslock-key {
+    flex-grow: 1.4; /* Sedikit kurangi proporsi shift/capslock */
+  }
+  .close-keyboard-key {
+    flex-grow: 1.1; /* Sedikit kurangi proporsi tombol tutup */
+  }
+}
+
+@media (max-width: 480px) {
+  #custom-virtual-keyboard {
+    padding: 5px;
+  }
+
+  .keyboard-row {
+    margin-bottom: 5px;
+    padding: 0 3px; /* Sesuaikan padding horizontal */
+  }
+
+  .keyboard-button {
+    padding: 10px 6px;
+    font-size: 1em;
+    height: 50px; /* Anda ingin height tetap */
+    border-radius: 7px;
+    min-width: 25px; /* Izinkan tombol menyusut lebih kecil lagi */
+    margin: 0 2px; /* Sesuaikan margin antar tombol */
+  }
+
+  .keyboard-row .keyboard-button:first-child {
+    margin-left: 0;
+  }
+  .keyboard-row .keyboard-button:last-child {
+    margin-right: 0;
+  }
+
+  .space-key {
+    flex-grow: 2; /* Kurangi proporsi spasi lebih banyak */
+  }
+  .backspace-key,
+  .enter-key {
+    flex-grow: 1.1; /* Kurangi proporsi backspace/enter lebih banyak */
+  }
+  .shift-key,
+  .capslock-key {
+    flex-grow: 1.2; /* Kurangi proporsi shift/capslock lebih banyak */
+  }
+  .close-keyboard-key {
+    flex-grow: 1; /* Kurangi proporsi tombol tutup */
+  }
+}
